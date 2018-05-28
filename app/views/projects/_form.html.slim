@@ -1,0 +1,8 @@
+= form_with model: project, local: true, class: 'todo', id: 'todo' do |f|
+  = f.text_field :name
+  ul.users
+    li v-for='item in items'
+      = fields_for 'assigns[]', Assign.new do |a_f|
+        = a_f.collection_select :user_id, User.all, :id, :name, 'v-model':'item.name'
+  button.hoge v-on:click.stop='add' aaa
+  = f.submit '保存'
